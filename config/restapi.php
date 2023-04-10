@@ -15,10 +15,10 @@ function insert_data_sensor(){
     $now = new DateTime();
     $datenow = $now->format("Y-m-d H:i:s");
     
-    $check = array('id' => '', 'tegangan' => '', 'arus' => '', 'daya' => '', 'energi' => '', 'waktu' => '');
+    $check = array('id' => '', 'tegangan' => '', 'arus' => '', 'daya' => '', 'energi' => '', 'status_alat' => '');
     $check_match = count(array_intersect_key($_POST, $check));
     if($check_match == count($check)){
-        $waktu_penggunaan = number_format($_POST['waktu']/60, 2); // convert detik ke menit.  
+        //$waktu_penggunaan = number_format($_POST['waktu']/60, 2); // convert detik ke menit.  
     
           $result = mysqli_query($konek_db, "INSERT INTO data_sensor SET
           id = '$_POST[id]',
@@ -26,7 +26,7 @@ function insert_data_sensor(){
           arus = '$_POST[arus]',
           daya = '$_POST[daya]',
           energi = '$_POST[energi]',
-          waktu = '$waktu_penggunaan',
+          status = '$_POST[status_alat]',
           timestamp = '$datenow'");
           
           if($result)
