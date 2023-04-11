@@ -2,7 +2,13 @@ let tegangan = 0;
 let arus = 0;
 let daya = 0;
 let energi = 0;
-let waktu = 0;
+
+let sensor_status;
+let init_time = 0;
+let on_count_time = 0;
+
+let time_used = 0;
+let real_time_used = 0;
 
 $(document).ready(function(){
     auto_load_data();
@@ -22,58 +28,66 @@ function auto_load_data() {
 function updateData() {
     $.getJSON("data/data_sensor.php", function(value){
         // set data to small box info
-    
-        let run_ajax = false;
 
-        $("#info-tegangan").html(value.result[0].tegangan + "<sup style = \"font-size: 20px\"> volt</sup>");
-        $("#info-arus").html(value.result[0].arus + "<sup style = \"font-size: 20px\"> amp</sup>");
-        $("#info-daya").html(value.result[0].daya + "<sup style = \"font-size: 20px\"> watt</sup>");
-        $("#info-energi").html(value.result[0].energi + "<sup style = \"font-size: 20px\"> kwh</sup>");
-        $("#info-waktu").html(value.result[0].waktu + "<sup style = \"font-size: 20px\"> Menit</sup>");  
-       
-        //fungsi banding data for kirim notif email 1x
-        if(value.result[0].tegangan != tegangan){
+        let fixed_time = 0;
+        //console.log(value);
+        //console.log(value.result[0].tegangan);
+        sensor_status = value.result[0].status;
+        console.log(sensor_status);
+
+        if(sensor_status === "start"){
             tegangan = value.result[0].tegangan;
-            run_ajax = true;
-        }
-        if(value.result[0].arus != arus){
             arus = value.result[0].arus;
-            run_ajax = true;
-        }
-        if(value.result[0].daya != daya){
             daya = value.result[0].daya;
-            run_ajax = true;
-        }
-        if(value.result[0].energi != energi){
-            daya = value.result[0].energi;
-            run_ajax = true;
-        }
-        if(value.result[0].waktu != waktu){
-            waktu = value.result[0].waktu;
-            run_ajax = true;
+            energi = value.result[0].energi;
+            init_time = Date.parse(value.result[0].timestamp);
+            console.log(init_time);
+        }else if(sensor_status === "on_count"){
+
+            //check waktu
+            if(on_count_time != value.result[0].timestamp){
+                on_count_time = Date.parse(value.result[0].timestamp);
+        
+                //count time
+                time_used = on_count_time - init_time;
+                //convert to minutes
+                real_time_used = (time_used/1000)/60;
+                fixed_time = real_time_used;
+                console.log(real_time_used);
+
+                $.ajax({
+                    type: "POST",
+                    url: "asset/fuzzy/get_fuzzy.php",
+                    data: {
+                        "daya" : value.result[0].daya,
+                        "waktu" : real_time_used,
+                    },
+                    success: function(response){
+                        console.log(response);
+                        $("#info-status").html(response);
+                    },
+                    error: function(xhr, thrownError){
+                        console.log ('error');
+                        console.log(xhr.status);
+                        console.log(thrownError);
+                    },
+                });
+            }
+        }else if(sensor_status === "stop"){
+            tegangan = 0;
+            arus = 0;
+            daya = 0;
+            energi = 0;
+            init_time = 0;
+            real_time_used = 0;
+            $("#info-status").html("--");
         }
 
-        if(run_ajax){
-            $.ajax({
-                type: "POST",
-                url: "asset/fuzzy/get_fuzzy.php",
-                data: {
-                    "daya" : value.result[0].daya,
-                    "waktu" : value.result[0].waktu,
-                },
-                success: function(response){
-                    console.log(response);
-                    $("#info-status").html(response);
-    
-                },
-                error: function(xhr, thrownError){
-                    console.log ('error');
-                    console.log(xhr.status);
-                    console.log(thrownError);
-                },
-            });
-        }
-
+        $("#info-tegangan").html(tegangan + "<sup style = \"font-size: 20px\"> volt</sup>");
+        $("#info-arus").html(arus + "<sup style = \"font-size: 20px\"> amp</sup>");
+        $("#info-daya").html(daya + "<sup style = \"font-size: 20px\"> watt</sup>");
+        $("#info-energi").html(energi + "<sup style = \"font-size: 20px\"> kwh</sup>");
+        $("#info-waktu").html(fixed_time.toFixed(2) + "<sup style = \"font-size: 20px\"> Menit</sup>");  
         
     });
 
