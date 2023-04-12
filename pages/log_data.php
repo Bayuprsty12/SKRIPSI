@@ -43,8 +43,9 @@
                         <th>Arus</th>                       
                         <th>Energi</th>
                         <th>Daya</th>
-                        <th>Waktu</th>
-                        <th>Result Fuzzy</th>
+                        <th>Status Alat</th>
+                        <th>Timestamp</th>
+                        <!-- <th>Result Fuzzy</th>-->
                         <th>Status</th>
                     </tr>
                     </thead>
@@ -62,8 +63,9 @@
                           echo "<td>".$row['arus']."</td>";
                           echo "<td>".$row['energi']."</td>";
                           echo "<td>".$row['daya']."</td>";                          
-                          echo "<td>".$row['waktu']."</td>"; 
-                          echo "<td>".number_format($result_fuzzy, 3)."</td>"; 
+                          echo "<td>".$row['status']."</td>"; 
+                          echo "<td>".$row['timestamp']."</td>";
+                          /*echo "<td>".number_format($result_fuzzy, 3)."</td>";*/
                           echo "<td>".finalStatus($result_fuzzy)."</td>";                     
                           echo "</tr>";
                           $no++;
@@ -77,8 +79,9 @@
                         <th>Arus</th>
                         <th>Energi</th>
                         <th>Daya</th>                       
-                        <th>Waktu</th>
-                        <th>Result Fuzzy</th>
+                        <th>Status Alat</th>
+                        <th>Timestamp</th>
+                        <!-- <th>Result Fuzzy</th>-->
                         <th>Status</th>
                     </tr>
                     </tfoot>

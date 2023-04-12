@@ -13,7 +13,7 @@ function send_email(){
     $message = "
     Halo, Bayu Prasetiyo
 
-    Sistem mengirimkan Anda Pesan WARNING! PENGGUNAAN LISTRIK, Oleh karena itu, Sistem ingin Anda tahu bahwa ada Penggunaan listrik berlebih. SEGERA PERIKSA secara detail penggunaannya di http://192.168.147.249/monitoring_daya_listrik/ Sekian Dan Terimakasih.
+    Sistem mengirimkan Anda Pesan WARNING! PENGGUNAAN LISTRIK, Oleh karena itu, Sistem ingin Anda tahu bahwa ada Penggunaan listrik berlebih. SEGERA PERIKSA secara detail penggunaannya di http://192.168.59.249/monitoring_daya_listrik/ Sekian Dan Terimakasih.
 
     Salam HEMAT,
     

@@ -123,7 +123,7 @@
 
             <div class="col-lg-2 col-6">
               <!-- small box -->
-              <div class="small-box bg-danger">
+              <div class="small-box bg-success">
                 <div class="inner">
                   <p>WAKTU PAKAI</p>
 
