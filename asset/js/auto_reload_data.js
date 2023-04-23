@@ -55,6 +55,11 @@ function updateData() {
                 fixed_time = real_time_used;
                 console.log(real_time_used);
 
+                tegangan = value.result[0].tegangan;
+                arus = value.result[0].arus;
+                daya = value.result[0].daya;
+                energi = value.result[0].energi;
+
                 $.ajax({
                     type: "POST",
                     url: "asset/fuzzy/get_fuzzy.php",

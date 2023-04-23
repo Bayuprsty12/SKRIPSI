@@ -55,7 +55,7 @@ function derajat_keanggotaan_waktu($linguistik_variable, $value){
             $derajat_keanggotaan = ($value - 0) / (60 - 0);
         }else if($value >= 60 and $value <= 120){
             $derajat_keanggotaan = (120 - $value) / (120 - 60);
-        }      
+        }          
     }else if($linguistik_variable == "Lama"){
         //count for miu lama
         if($value <= 60){
@@ -146,8 +146,8 @@ if(isset($submit)){
         echo "linguistik Daya = [".$row['keanggotaan_daya']."]<br>";
         echo "linguistik Waktu = [".$row['keanggotaan_waktu']."]<br>";
         echo "Rule = [".$row['result']."]<br>";
-        echo "nilai a-Predikat = ".number_format($alpha_predikat,3)."<br>"; // mencetak nilai a-predikat
-        echo "inferensi nilai Z per rule = ".number_format($inferensi_nilaiZ,3)."<br><br>";
+        echo "nilai a-Predikat = ".number_format($alpha_predikat,6)."<br>"; // mencetak nilai a-predikat
+        echo "inferensi nilai Z per rule = ".number_format($inferensi_nilaiZ,6)."<br><br>";
         
         $temp_defuzzyfikasi[$array_index][0] = $alpha_predikat;
         $temp_defuzzyfikasi[$array_index][1] = $inferensi_nilaiZ;
@@ -155,7 +155,7 @@ if(isset($submit)){
     }
 
     $average_weighted = count_average($temp_defuzzyfikasi, $array_index);
-    echo "Nilai Z keseluruhan di Average".$average_weighted."<br> <br>";
+    echo "Nilai Z keseluruhan di Average ".$average_weighted."<br> <br>";
  
 
     echo "daya = ".$daya."<br>";

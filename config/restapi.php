@@ -18,8 +18,7 @@ function insert_data_sensor(){
     $check = array('id' => '', 'tegangan' => '', 'arus' => '', 'daya' => '', 'energi' => '', 'status_alat' => '');
     $check_match = count(array_intersect_key($_POST, $check));
     if($check_match == count($check)){
-        //$waktu_penggunaan = number_format($_POST['waktu']/60, 2); // convert detik ke menit.  
-    
+      
           $result = mysqli_query($konek_db, "INSERT INTO data_sensor SET
           id = '$_POST[id]',
           tegangan = '$_POST[tegangan]',

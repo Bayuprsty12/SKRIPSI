@@ -34,6 +34,7 @@ function send_email(){
 
     $mail->setFrom($email, $name);
     $mail->addAddress("bayuprasetiyo0102@gmail.com", "Bayu");
+    $mail->addAddress("egar97600@gmail.com", "Prasetiyo");
 
     $mail->Subject = $subject;
     $mail->Body = $message;

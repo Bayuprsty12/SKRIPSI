@@ -45,8 +45,8 @@
                         <th>Daya</th>
                         <th>Status Alat</th>
                         <th>Timestamp</th>
-                        <!-- <th>Result Fuzzy</th>-->
-                        <th>Status</th>
+                        <!-- <th>Result Fuzzy</th>
+                        <th>Status</th>-->
                     </tr>
                     </thead>
                     <tbody>
@@ -55,7 +55,7 @@
                         $sql = mysqli_query($konek_db,"SELECT * FROM data_sensor");
                         while($row = mysqli_fetch_array($sql)){
 
-                          $result_fuzzy = fuzzydatabase($row['daya'], $row['waktu']);
+                          //$result_fuzzy = fuzzydatabase($row['daya'], $row['waktu']);
                           
                           echo "<tr>";
                           echo "<td>".$no."</td>";                    
@@ -65,8 +65,8 @@
                           echo "<td>".$row['daya']."</td>";                          
                           echo "<td>".$row['status']."</td>"; 
                           echo "<td>".$row['timestamp']."</td>";
-                          /*echo "<td>".number_format($result_fuzzy, 3)."</td>";*/
-                          echo "<td>".finalStatus($result_fuzzy)."</td>";                     
+                          /*echo "<td>".number_format($result_fuzzy, 3)."</td>";
+                          echo "<td>".finalStatus($result_fuzzy)."</td>";*/                   
                           echo "</tr>";
                           $no++;
 
@@ -81,8 +81,8 @@
                         <th>Daya</th>                       
                         <th>Status Alat</th>
                         <th>Timestamp</th>
-                        <!-- <th>Result Fuzzy</th>-->
-                        <th>Status</th>
+                        <!-- <th>Result Fuzzy</th>
+                        <th>Status</th>-->
                     </tr>
                     </tfoot>
                     </table>
