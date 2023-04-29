@@ -14,8 +14,7 @@ let fuzzy_result;
 $(document).ready(function(){
     auto_load_data();
     //console.log("test heloo world");
-    
-    updateData();
+    //updateData();
 });
 
 function auto_load_data() {
