@@ -9,6 +9,7 @@ let on_count_time = 0;
 
 let time_used = 0;
 let real_time_used = 0;
+let fuzzy_result;
 
 $(document).ready(function(){
     auto_load_data();
@@ -69,6 +70,7 @@ function updateData() {
                     },
                     success: function(response){
                         console.log(response);
+                        fuzzy_result = response;
                         $("#info-status").html(response);
                     },
                     error: function(xhr, thrownError){
@@ -79,13 +81,36 @@ function updateData() {
                 });
             }
         }else if(sensor_status === "stop"){
-            tegangan = 0;
-            arus = 0;
-            daya = 0;
-            energi = 0;
-            init_time = 0;
-            real_time_used = 0;
-            $("#info-status").html("--");
+            if(init_time != 0 ){
+                console.log(fuzzy_result);
+                $.ajax({
+                    type: "post",
+                    url: "data/post_log_penggunaan.php",
+                    data: {
+                        "tegangan" : tegangan,
+                        "arus" : arus,
+                        "daya" : daya,
+                        "energi" : energi,
+                        "waktu_penggunaan" : real_time_used.toFixed(2),
+                        "hasil_fuzzy" : fuzzy_result,
+                    },
+                    success: function (response) {
+                        console.log(response);
+                        tegangan = 0;
+                        arus = 0;
+                        daya = 0;
+                        energi = 0;
+                        init_time = 0;
+                        real_time_used = 0;
+                        $("#info-status").html("--");
+                    }, 
+                    error: function(xhr, thrownError){
+                        console.log ('error');
+                        console.log(xhr.status);
+                        console.log(thrownError);
+                    },
+                });
+            }
         }
 
         $("#info-tegangan").html(tegangan + "<sup style = \"font-size: 20px\"> volt</sup>");
