@@ -1,7 +1,3 @@
-let loop_chart = 0;
-let data_tanggal = [];
-let data_kwh = [];
-
 $(document).ready(function () {
   $(".nav-link").click(function (e) { 
     e.preventDefault();
@@ -13,19 +9,19 @@ $(document).ready(function () {
 });
 
 function reloadForChart(){
-  setTimeout(() => {
-    if(loop_chart<1){
+  for(i=0; i<=1; i++){
+    setTimeout(() => {
       reloadChart();
-      loop_chart++;
-    }
-    reloadForChart();
-  }, 1000);
+      console.log("Dilakukan ke- "+i);
+    }, 1000);
+  }
 }
 
 function reloadChart(){
-  console.log("beruhasil");
-  $.getJSON("data/get_log_penggunaan.php",function (data_log) {
+  let data_tanggal = [];
+  let data_kwh = [];
 
+  $.getJSON("data/get_log_penggunaan.php",function (data_log) {
       $.each(data_log.result, function() { 
          data_tanggal.push(this.tanggal_penggunaan);
          data_kwh.push(this.total_kwh);
