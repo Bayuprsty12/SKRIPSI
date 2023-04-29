@@ -43,19 +43,17 @@
                         <th>Arus</th>                       
                         <th>Energi</th>
                         <th>Daya</th>
-                        <th>Status Alat</th>
-                        <th>Timestamp</th>
-                        <!-- <th>Result Fuzzy</th>-->
+                        <th>Waktu Pakai</th>
                         <th>Status Penggunaan</th>
+                        <th>Tanggal</th>
                     </tr>
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
-                        $sql = mysqli_query($konek_db,"SELECT * FROM data_sensor");
+                        $sql = mysqli_query($konek_db,"SELECT * FROM log_penggunaan");
                         while($row = mysqli_fetch_array($sql)){
-
-                          //$result_fuzzy = fuzzydatabase($row['daya'], $row['waktu']);
+                          
                           
                           echo "<tr>";
                           echo "<td>".$no."</td>";                    
@@ -63,10 +61,9 @@
                           echo "<td>".$row['arus']."</td>";
                           echo "<td>".$row['energi']."</td>";
                           echo "<td>".$row['daya']."</td>";                          
-                          echo "<td>".$row['status']."</td>"; 
-                          echo "<td>".$row['timestamp']."</td>";
-                          /*echo "<td>".number_format($result_fuzzy, 3)."</td>";*/
-                          //echo "<td>".finalStatus($result_fuzzy)."</td>";                   
+                          echo "<td>".$row['lama_penggunaan']."</td>"; 
+                          echo "<td>".$row['hasil_fuzzy']."</td>";
+                          echo "<td>".$row['tanggal_penggunaan']."</td>";                  
                           echo "</tr>";
                           $no++;
 
@@ -76,13 +73,12 @@
                     <tr>
                         <th>No.</th>                       
                         <th>Tegangan</th>
-                        <th>Arus</th>
+                        <th>Arus</th>                       
                         <th>Energi</th>
-                        <th>Daya</th>                       
-                        <th>Status Alat</th>
-                        <th>Timestamp</th>
-                        <!-- <th>Result Fuzzy</th>-->
+                        <th>Daya</th>
+                        <th>Waktu Pakai</th>
                         <th>Status Penggunaan</th>
+                        <th>Tanggal</th>
                     </tr>
                     </tfoot>
                     </table>
