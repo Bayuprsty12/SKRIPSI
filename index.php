@@ -204,9 +204,6 @@
 <script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
@@ -254,12 +251,11 @@
 <!-- Control Page -->
 <script type="text/javascript" src="asset/js/controlpage.js"></script>
 <script type="text/javascript" src="asset/js/auto_reload_data.js"></script>
+<script type="text/javascript" src="asset/js/chart_controller.js"></script>
 
 
 
 
 <!-- ================================== -->
-
-</script>
 </body>
 </html>
